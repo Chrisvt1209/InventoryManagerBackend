@@ -1,4 +1,6 @@
 ﻿using Application.Abstractions.Data;
+using Domain.Category;
+using Domain.Product;
 using Domain.Users;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +12,8 @@ public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> 
     : DbContext(options), IApplicationDbContext
 {
     public DbSet<User> Users { get; set; }
+    public DbSet<Product> Products { get; set; }
+    public DbSet<Category> Categories { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -1,1 +1,1 @@
-# clean-architecture-example
+# Inventory Management App

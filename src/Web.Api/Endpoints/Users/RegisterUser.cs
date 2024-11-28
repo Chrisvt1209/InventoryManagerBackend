@@ -1,5 +1,4 @@
-﻿
-using Application.Users.Register;
+﻿using Application.Users.Register;
 using MediatR;
 using SharedKernel;
 using Web.Api.Extensions;

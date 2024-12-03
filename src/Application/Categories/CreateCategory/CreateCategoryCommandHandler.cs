@@ -14,8 +14,7 @@ internal sealed class CreateCategoryCommandHandler(IApplicationDbContext context
         var category = new Category
         {
             Id = Guid.NewGuid(),
-            Name = command.Name,
-            Products = command.Products
+            Name = command.Name
         };
 
         category.Raise(new CategoryCreatedDomainEvent(category.Id));

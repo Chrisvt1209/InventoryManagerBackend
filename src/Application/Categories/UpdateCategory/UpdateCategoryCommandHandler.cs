@@ -18,7 +18,6 @@ internal sealed class UpdateCategoryCommandHandler(IApplicationDbContext context
         }
 
         category.Name = command.Name;
-        category.Products = command.Products;
 
         await context.SaveChangesAsync(cancellationToken);
 

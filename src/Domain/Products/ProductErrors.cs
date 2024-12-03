@@ -13,5 +13,5 @@ public static class ProductErrors
 
     public static readonly Error InvalidPrice = Error.Failure("Products.InvalidPrice", "The price must be greater than zero.");
 
-    public static readonly Error InvalidQuantity = Error.Failure("Products.InvalidStock", "The stock must be greater than or equal to zero.");
+    public static readonly Error InvalidQuantity = Error.Failure("Products.InvalidQuantity", "The stock must be greater than or equal to zero.");
 }

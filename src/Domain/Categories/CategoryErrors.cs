@@ -8,5 +8,6 @@ public static class CategoryErrors
     {
         return Error.NotFound("Categories.NotFound", $"The category with id '{categoryId}' was not found.");
     }
+
     public static readonly Error NameNotUnique = Error.Conflict("Categories.NameNotUnique", "The provided name is already in use.");
 }

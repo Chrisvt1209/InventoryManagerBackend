@@ -19,6 +19,11 @@ internal sealed class UpdateProductCommandHandler(IApplicationDbContext context)
             return Result.Failure(ProductErrors.NotFound(command.Id));
         }
 
-        return Result.Success();
+        product.Name = command.Name;
+        product.Description = command.Description;
+        product.Price = command.Price;
+        product.Quantity = command.Quantity;
+
+        return Result.Success(product);
     }
 }

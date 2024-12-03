@@ -1,4 +1,4 @@
-﻿using Domain.Products;
+﻿using Domain.Products.DomainEvents;
 using MediatR;
 
 namespace Application.Products.CreateProduct;

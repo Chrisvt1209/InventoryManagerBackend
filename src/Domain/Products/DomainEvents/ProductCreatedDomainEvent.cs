@@ -1,5 +1,5 @@
 ﻿using SharedKernel;
 
-namespace Domain.Products;
+namespace Domain.Products.DomainEvents;
 
 public sealed record ProductCreatedDomainEvent(Guid ProductId) : IDomainEvent;

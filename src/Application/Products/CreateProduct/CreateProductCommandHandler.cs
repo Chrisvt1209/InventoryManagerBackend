@@ -1,6 +1,7 @@
 ﻿using Application.Abstractions.Data;
 using Application.Abstractions.Messaging;
 using Domain.Products;
+using Domain.Products.DomainEvents;
 using SharedKernel;
 
 namespace Application.Products.CreateProduct;

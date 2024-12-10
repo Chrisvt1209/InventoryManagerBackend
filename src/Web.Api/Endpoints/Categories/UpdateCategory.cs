@@ -21,7 +21,7 @@ internal sealed class UpdateCategory : IEndpoint
 
             return result.Match(Results.NoContent, CustomResults.Problem);
         })
-        .WithTags(Tags.Categories)
-        .RequireAuthorization();
+        .WithTags(Tags.Categories);
+        //.RequireAuthorization();
     }
 }

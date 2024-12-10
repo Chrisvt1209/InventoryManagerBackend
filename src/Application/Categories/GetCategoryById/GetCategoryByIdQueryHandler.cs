@@ -24,7 +24,8 @@ internal sealed class GetCategoryByIdQueryHandler(IApplicationDbContext context)
                     Name = p.Name,
                     Description = p.Description,
                     Price = p.Price,
-                    Quantity = p.Quantity
+                    Quantity = p.Quantity,
+                    CategoryId = p.CategoryId
                 }).ToList()
             })
             .SingleOrDefaultAsync(cancellationToken);

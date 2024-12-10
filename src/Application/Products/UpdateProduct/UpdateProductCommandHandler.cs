@@ -24,6 +24,8 @@ internal sealed class UpdateProductCommandHandler(IApplicationDbContext context)
         product.Price = command.Price;
         product.Quantity = command.Quantity;
 
+        await context.SaveChangesAsync(cancellationToken);
+
         return Result.Success(product);
     }
 }

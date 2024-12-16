@@ -7,7 +7,9 @@ public sealed class Order : Entity
 {
     public Guid Id { get; set; }
     public Guid UserId { get; set; }
-    public User user { get; set; }
-    public decimal TotalPrice { get; set; }
-    public List<OrderItem> OrderItems { get; set; } = []; // subject to change to list of order items
+    public User User { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public int TotalAmount { get; set; }
+    public List<OrderItem> OrderItems { get; set; } = [];
+    public OrderStatus OrderStatus { get; set; }
 }

@@ -26,6 +26,16 @@ public class Program
 
         builder.Services.AddEndpoints(Assembly.GetExecutingAssembly());
 
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowSpecificOrigin",
+                builder => builder
+                .WithOrigins("http://localhost:5173")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials());
+        });
+
         var app = builder.Build();
 
         app.MapEndpoints();
@@ -51,6 +61,8 @@ public class Program
         app.UseAuthentication();
 
         app.UseAuthorization();
+
+        app.UseCors("AllowSpecificOrigin");
 
         await app.RunAsync();
     }

@@ -11,9 +11,9 @@ internal class GetAllProducts : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapGet("/products", async (string? searchTerm, ISender sender, CancellationToken cancellationToken) =>
+        app.MapGet("/products", async (ISender sender, CancellationToken cancellationToken) =>
         {
-            var query = new GetAllProductsQuery(searchTerm);
+            var query = new GetAllProductsQuery();
 
             Result<List<ProductResponse>> result = await sender.Send(query, cancellationToken);
 

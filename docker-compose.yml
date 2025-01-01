@@ -1,41 +1,30 @@
 services:
-    postgres:
-        image: database:latest
-        container_name: postgres
-        environment:
-            POSTGRES_DB: InventoryManager
-            POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: '#$%PostgreSQL!'
-        ports:
-            - "5432:5432"
-        volumes:
-            - postgres_data:/var/lib/postgresql/data
+  web-api:
+    image: ${DOCKER_REGISTRY-}webapi
+    container_name: web-api
+    build:
+      context: .
+      dockerfile: src/Web.Api/Dockerfile
+    ports:
+      - 5000:8080
+      - 5001:8081
 
-    webapi:
-        image: backend:latest
-        container_name: backend
-        build:
-            context: .
-            dockerfile: src/Web.Api/Dockerfile
-        environment:
-            - ASPNETCORE_ENVIRONMENT=Development
-        ports:
-            - "5000:80"
-        depends_on:
-            - postgres
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      - POSTGRES_DB=clean-architecture
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./.containers/db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
 
-    frontend:
-        image: frontend:latest
-        container_name: frontend
-        working_dir: /app
-        volumes:
-        - ./inventory-manager-frontend:/app
-        - /app/node_modules
-        ports:
-        - "3000:3000"
-        command: ["npm", "start"]
-        depends_on:
-        - webapi
-
-volumes:
-    postgres_data:
+  seq:
+    image: datalust/seq:latest
+    container_name: seq
+    environment:
+      - ACCEPT_EULA=Y
+    ports:
+      - 8081:80

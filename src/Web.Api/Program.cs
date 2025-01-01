@@ -12,7 +12,7 @@ public class Program
 {
     public static async Task Main(string[] args)
     {
-        var builder = WebApplication.CreateBuilder(args);
+        WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
         builder.Host.UseSerilog((context, loggerConfig) => loggerConfig.ReadFrom.Configuration(context.Configuration));
 
@@ -26,17 +26,14 @@ public class Program
 
         builder.Services.AddEndpoints(Assembly.GetExecutingAssembly());
 
-        builder.Services.AddCors(options =>
-        {
-            options.AddPolicy("AllowSpecificOrigin",
+        builder.Services.AddCors(options => options.AddPolicy("AllowSpecificOrigin",
                 builder => builder
-                .WithOrigins("http://localhost:5173")
+                .WithOrigins("http://localhost:5173", "https://localhost:7142")
                 .AllowAnyHeader()
                 .AllowAnyMethod()
-                .AllowCredentials());
-        });
+                .AllowCredentials()));
 
-        var app = builder.Build();
+        WebApplication app = builder.Build();
 
         app.MapEndpoints();
 

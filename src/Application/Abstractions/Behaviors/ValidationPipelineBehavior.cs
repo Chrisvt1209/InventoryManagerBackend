@@ -54,7 +54,7 @@ internal sealed class ValidationPipelineBehavior<TRequest, TResponse>(
             return [];
         }
 
-        var context = new ValidationContext<TRequest>(request);
+        ValidationContext<TRequest> context = new ValidationContext<TRequest>(request);
 
         ValidationResult[] validationResults = await Task.WhenAll(
             validators.Select(validator => validator.ValidateAsync(context)));
